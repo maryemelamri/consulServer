@@ -4,6 +4,6 @@ WORKDIR /app
 
 COPY target/car-0.0.1-SNAPSHOT.jar /app/car-service.jar
 
-EXPOSE 8081
+EXPOSE 8086
 
 CMD ["java", "-jar", "/app/car-service.jar"]

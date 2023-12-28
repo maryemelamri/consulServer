@@ -18,9 +18,9 @@ services:
       - "8500:8500"
     networks:
       - microservices-network
-  gateway-service:
+  gateway:
     build:
-      context: ./gatewayService
+      context: ./gateway
     ports:
       - "8888:8888"
     depends_on:
@@ -34,13 +34,13 @@ services:
       SPRING_CLOUD_CONSUL_DISCOVERY_ENABLED: 'true'
   client-service:
     build:
-      context: ./clientService
+      context: ./client
     ports:
-      - "8088:8088"
+      - "8087:8087"
     depends_on:
       - mysql
       - consul
-      - gateway-service
+      - gateway
     networks:
       - microservices-network
     environment:
@@ -49,7 +49,7 @@ services:
       SPRING_CLOUD_CONSUL_DISCOVERY_ENABLED: 'true'
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/clientservicedb?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_DATASOURCE_PASSWORD:
     healthcheck:
       test: "/usr/bin/mysql --user=root --password=root --execute \"SHOW DATABASES;\""
       interval: 5s
@@ -59,11 +59,11 @@ services:
     build:
       context: ./car
     ports:
-      - "8089:8089"
+      - "8086:8086"
     depends_on:
       - mysql
       - consul
-      - gateway-service
+      - gateway
     networks:
       - microservices-network
     environment:
@@ -72,7 +72,7 @@ services:
       SPRING_CLOUD_CONSUL_DISCOVERY_ENABLED: 'true'
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/carservicedb?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_DATASOURCE_PASSWORD:
     healthcheck:
       test: "/usr/bin/mysql --user=root --password=root --execute \"SHOW DATABASES;\""
       interval: 5s
