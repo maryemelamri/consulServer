@@ -12,8 +12,8 @@ services:
       - microservices-network
 
   consul:
-    image: consul:1.15.4
-    container_name: consul-container
+    image: hashicorp/consul:latest
+    container_name: consul
     ports:
       - "8500:8500"
     networks:
@@ -47,9 +47,9 @@ services:
       SPRING_CLOUD_CONSUL_HOST: consul
       SPRING_CLOUD_CONSUL_PORT: 8500
       SPRING_CLOUD_CONSUL_DISCOVERY_ENABLED: 'true'
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/clientservicedb?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/Micro_ClientDB?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD:
+      SPRING_DATASOURCE_PASSWORD: root
     healthcheck:
       test: "/usr/bin/mysql --user=root --password=root --execute \"SHOW DATABASES;\""
       interval: 5s
@@ -72,7 +72,7 @@ services:
       SPRING_CLOUD_CONSUL_DISCOVERY_ENABLED: 'true'
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/carservicedb?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD:
+      SPRING_DATASOURCE_PASSWORD: root
     healthcheck:
       test: "/usr/bin/mysql --user=root --password=root --execute \"SHOW DATABASES;\""
       interval: 5s

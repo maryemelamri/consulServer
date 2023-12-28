@@ -1,13 +1,13 @@
 server:
-  port: 8087
+  port: 8082
 
 spring:
   application:
-    name: SERVICE-CLIENT
+    name: SERVICE-CAR
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/clientservicedb?createDatabaseIfNotExist=true
-    username: "root"
+    url: jdbc:mysql://localhost:3306/carservicedb?createDatabaseIfNotExist=true
+    username: "localhost"
     password: ""
   jpa:
     hibernate:

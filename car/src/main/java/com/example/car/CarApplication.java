@@ -8,6 +8,7 @@ import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
+@EnableDiscoveryClient
 public class CarApplication {
 
     public static void main(String[] args) {
